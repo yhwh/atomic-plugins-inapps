@@ -38,7 +38,11 @@ public class GooglePlayInAppService extends AbstractInAppService
             purchase.signature = signature;
             purchase.purchaseData = purchaseData;
             purchase.productId = jo.getString("productId");
-            purchase.transactionId = jo.getString("orderId");
+            if (jo.has("orderId")) {
+                purchase.transactionId = jo.getString("orderId");
+            } else {
+                purchase.transactionId = "";
+            }
             purchase.quantity = 1;
             purchase.purchaseState = jo.getInt("purchaseState");
             purchase.purchaseToken = jo.getString("purchaseToken");
